@@ -12,13 +12,12 @@ function onMapLoad() {
 	$.getJSON("http://localhost/mapa/api/apiRestaurants.php", function (result) {
 		var newKindFood=[];
 		result.forEach(function (r) {
-			console.log(JSON.stringify(r));
-			data_markers.push(r);
+/* 			console.log(JSON.stringify(r));
+ */			data_markers.push(r);
 			if(newKindFood.indexOf(r.kind_food)===-1){
 				newKindFood.push(r.kind_food);
 				$('#kind_food_selector').append( '<option value='+r.kind_food+">"+r.kind_food+"</option>");
 			}
-			
 		});	
 		 render_to_map(data_markers, 'all');
 	});
@@ -26,7 +25,7 @@ function onMapLoad() {
 
 
 $('#kind_food_selector').on('change', function() {
-  console.log(this.value);
+  console.log("selector======"+this.value);
   render_to_map(data_markers, this.value);
 });
 
@@ -34,8 +33,9 @@ $('#kind_food_selector').on('change', function() {
 function render_to_map(data_markers,filter){
 	markers.clearLayers();
 	for (var i = 0; i < data_markers.length; i++) {
-		var food=data_markers[i].kind_food.split(",");
+		var food=data_markers[i].kind_food;
 		if(food.includes(filter)){
+			console.log("food= "+food+" filter= "+filter);
 			var marker = L.marker([data_markers[i].lat, data_markers[i].lng], data_markers[i].name);
 			marker.addTo(markers);
 			marker.bindPopup(data_markers[i].name);
