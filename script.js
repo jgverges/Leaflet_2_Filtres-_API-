@@ -26,19 +26,15 @@ function onMapLoad() {
 	});
 }
 
-
 $('#kind_food_selector').on('change', function() {
-  console.log("selector======"+this.value);
   render_to_map(data_markers, this.value);
 });
-
 
 function render_to_map(data_markers,filter){
 	markers.clearLayers();
 	for (var i = 0; i < data_markers.length; i++) {
 		var food=data_markers[i].kind_food;
 		if(food.includes(filter)){
-			console.log("food= "+food+" filter= "+filter);
 			var marker = L.marker([data_markers[i].lat, data_markers[i].lng], data_markers[i].name);
 			marker.addTo(markers);
 			marker.bindPopup(data_markers[i].name);
