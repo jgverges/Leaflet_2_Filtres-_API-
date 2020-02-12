@@ -16,13 +16,13 @@ function onMapLoad() {
 			data_markers.push(r);
 			newKindFood.push(r.kind_food);
 
-/* 			if(newKindFood.indexOf(r.kind_food)===-1){
+			if(newKindFood.indexOf(r.kind_food)===-1){
 				var dividirArr=r.kind_food.split(",");
 				newKindFood.push(dividirArr);
 				console.log("newKindFood= "+newKindFood);
 				$('#kind_food_selector').append( '<option value='+r.kind_food+">"+r.kind_food+"</option>");
 			}
- */		});	
+		});	
  let arregloConRepetidos = ["pizz","pizz","hun","veg","pizz","hun"];
 console.log("Con repetidos es:", arregloConRepetidos);
 let sinRepetidos = arregloConRepetidos.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
