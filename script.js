@@ -12,13 +12,32 @@ function onMapLoad() {
 	$.getJSON("http://localhost/mapa/api/apiRestaurants.php", function (result) {
 		var newKindFood=[];
 		result.forEach(function (r) {
-/* 			console.log(JSON.stringify(r));
- */			data_markers.push(r);
-			if(newKindFood.indexOf(r.kind_food)===-1){
-				newKindFood.push(r.kind_food);
+			//console.log(JSON.stringify(r));
+			data_markers.push(r);
+			newKindFood.push(r.kind_food);
+
+/* 			if(newKindFood.indexOf(r.kind_food)===-1){
+				var dividirArr=r.kind_food.split(",");
+				newKindFood.push(dividirArr);
+				console.log("newKindFood= "+newKindFood);
 				$('#kind_food_selector').append( '<option value='+r.kind_food+">"+r.kind_food+"</option>");
 			}
-		});	
+ */		});	
+ let arregloConRepetidos = ["pizz","pizz","hun","veg","pizz","hun"];
+console.log("Con repetidos es:", arregloConRepetidos);
+let sinRepetidos = arregloConRepetidos.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
+console.log("Sin repetidos es:", sinRepetidos);
+//let arregloConRepetidos = [1, 2, 3, 4, 1, 2, 2, 2, 10];
+console.log("Con repetidos es:", newKindFood);
+ newKindFood2 = newKindFood.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
+console.log("sin repetidos es:", newKindFood2);
+
+/* 		newKindFood.prototype.unique=function(a){
+			return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+		  });
+		  console.log("newKindFood= "+newKindFood);
+ */  
+
 		 render_to_map(data_markers, 'all');
 	});
 }
